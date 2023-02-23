@@ -1,0 +1,12 @@
+{
+  "type":"module",
+  "name": "javascript_adv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "02_code_quality_metrics.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
