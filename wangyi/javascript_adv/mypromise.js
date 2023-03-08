@@ -43,17 +43,77 @@ export function myPromise(fn) {
   
     fn(resolve, reject);
   }
+
+new Promise(resolve =>{
+  console.log('a1')
+  resolve()
+})
+.then(()=>{
+  console.log('a2')
+  new Promise(resolve =>{
+    console.log('b1')
+    resolve()
+  })
+  .then(()=>console.log('b2'))
+  .then(()=>console.log('b3'))
+})
+.then(()=>console.log('a4'))
+
+
+
+function test1(){
+    
+console.log('0_first')
   
+setTimeout(()=>{
+  console.log('setTimeout1')
+},10)
 
 
   // Example usage:
-  let p = new myPromise(function(resolve, reject) {
+  // myPromise
+  let p = new myPromise(function(res, rej) {
+    console.log('02_ belonging creating promise ')
     setTimeout(function() {
-      resolve("Hello, world!");
-    }, 1000);
+      console.log('will be called depended on timer')
+      res("Hello, world!");
+    }, 10);
   });
   
   p.then(function(value) {
     console.log(value); // Output: "Hello, world!"
+    new myPromise((resovle,reject)=>{
+      setTimeout(()=>{
+        resovle("Charlie")
+      })
+      
+    })
+
+  }).then((value)=>{
+    console.log("hello" + value)
   });
+
+
+
+
+  let p2= new Promise(function(resolve,reject){
+
+    console.log('03_ belonging creating promise')
+    setTimeout(function(){
   
+      reject("no way to run")
+    },10)
+  })
+
+  p2.then(()=>{},(e)=>{
+    console.error(e)
+  })
+
+  setTimeout(()=>{
+    console.log('setTimeout2')
+  },10)
+  
+
+  
+}
+
